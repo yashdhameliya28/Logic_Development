@@ -380,5 +380,4 @@ public class Lab_4{
         arr[0] = temp;
         return arr;   
     }
->>>>>>> f9760b9 (Date:5-11-25)
 }
