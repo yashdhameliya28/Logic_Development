@@ -1,3 +1,4 @@
+
 public class Lab_5 {
     public static void main(String[] args) {
         // if(isPronic(13)){
@@ -16,8 +17,17 @@ public class Lab_5 {
 
         // System.out.println(decimalToOcatl(25));
         // System.out.println(octalToDecimal(31));
-        System.out.println(decimalToHexadecimal(31).toString());
-        System.out.println(hexaDecimalToDecimal("1F"));
+        // System.out.println(decimalToHexadecimal(31).toString());
+        // System.out.println(hexaDecimalToDecimal("1F"));
+
+        if(isKaprekar(45)){
+            System.out.println("Given number is Kaprekar");
+        }
+        else{
+            System.out.println("Given number not is Kaprekar");
+        }
+        
+        System.out.println(findAngleFromClock(3, 30));
     }
 
     public static boolean isUgly(int n){
@@ -121,6 +131,28 @@ public class Lab_5 {
         }
         return ans;
     }
-
     
+    public static boolean isKaprekar(int n){
+        int squ = n * n;
+        int temp = n, count=0;
+        while (temp!=0) {
+            count++;
+            temp/=10;
+        }
+        int secondPart = squ % (int) (Math.pow(10, count));
+        int firstPart = squ / (int) (Math.pow(10, count));
+
+        if((firstPart + secondPart) != n){
+            return false;
+        }
+        return true;
+    }
+
+    public static double findAngleFromClock(int h, int m){
+        double hrAngle = (30 * h) + (0.5 * m);
+        double minAngle = 6 * m;
+
+        double angle = Math.abs(minAngle - hrAngle);
+        return angle;
+    }
 }
