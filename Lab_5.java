@@ -14,7 +14,10 @@ public class Lab_5 {
         //     System.out.println("Given number not is Artomorphic");
         // }
 
-        System.out.println(decimalToOcatl(25));
+        // System.out.println(decimalToOcatl(25));
+        // System.out.println(octalToDecimal(31));
+        System.out.println(decimalToHexadecimal(31).toString());
+        System.out.println(hexaDecimalToDecimal("1F"));
     }
 
     public static boolean isUgly(int n){
@@ -78,4 +81,46 @@ public class Lab_5 {
         }
         return oct;
     }
+
+    public static int octalToDecimal(int n){
+        int dec=0, count=-1;
+        while (n  != 0) {
+            int rem = n%10;
+            count++;
+            dec = dec + (int) (rem * Math.pow(8, count));
+            n/=10;
+        }
+        return dec;
+    }
+
+    public static StringBuilder decimalToHexadecimal(int n){
+        String temp = "";
+        String hexaDigit = "0123456789ABCDEF";
+        while (n != 0) {
+            temp += hexaDigit.charAt(n % 16);
+            n /= 16;
+        }
+        return new StringBuilder(temp).reverse();
+    }
+
+    public static int hexaDecimalToDecimal(String n){
+        int i=n.length();
+        int ans=0, count=-1;
+        char[] hexaDigit = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        while (i >= 0) {
+            int index = 0;
+            count++; 
+            char c = n.charAt(i-1);
+            for(int j=0; j<16; j++){
+                if(hexaDigit[j] == c){
+                    index = j;
+                }
+            }
+            ans += (int) (index*Math.pow(16, count));
+            i--;
+        }
+        return ans;
+    }
+
+    
 }
