@@ -42,7 +42,7 @@ public class Lab_4{
 
     public static int secondLargetsElement(int[] arr){
         Arrays.sort(arr);
-        return arr[arr.length-3];
+        return arr[arr.length-2];
     } 
 
     public static int secondSmallestElement(int[] arr){

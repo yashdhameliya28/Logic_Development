@@ -8,7 +8,7 @@ public class Lab_6 {
         // printArr(insertionSort(arr));
         // printArr(selectionSort(arr1));
         int[] arr2 = {1,2,3,4,5,6,7};
-        // printArr(rotateArr(arr2, 3)); 
+        
     }
 
     public static void printArr(int[] arr) {
@@ -263,15 +263,4 @@ public class Lab_6 {
         }
         return arr;
     }
-
-    // public static int[] rotateArr(int[] arr, int k){
-    //     for(int i=1; i<=k; i++){
-    //         int temp = arr[arr.length-i];
-    //         for(int j=arr.length-1; j>0; j--){
-    //             arr[j] = arr[j];
-    //         }
-    //         arr[i] = temp;
-    //     }
-    //     return arr;
-    // }
 }
