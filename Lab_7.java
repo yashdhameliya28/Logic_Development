@@ -8,8 +8,9 @@ public class Lab_7 {
         // int max = lab4.secondLargetsElement(arr);
         // int min = lab4.secondSmallestElement(arr);
         // System.out.println(diffBetween2LargestEleEnd2SmallestEle(min, max));
-        int[] digits = { 4, 1, 3, 2, 9 };
+        int[] digits = { 1, 1, 3 };
         System.out.println(formANumIsDivideBy3(digits));
+        // System.out.println(decodePattern("2a2"));
     }
 
     public static int[] rotateArr(int[] arr, int k) {
@@ -63,6 +64,7 @@ public class Lab_7 {
 
     public static String formANumIsDivideBy3(int[] arr) {
         Arrays.sort(arr);
+        boolean oneRemove = false;
         int sum = sumOfAllElementInArray(arr);
         int rem = sum % 3;
         if (sum % 3 == 0) {
@@ -73,10 +75,24 @@ public class Lab_7 {
             sb.reverse();
             return sb.toString();
         } else {
-            for(int i=0; i<arr.length; i++){
-                if(arr[i] % 3 == rem){
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] % 3 == rem) {
+                    oneRemove = true;
                     arr[i] = -1;
                     break;
+                }
+            }
+        }
+        if (!oneRemove) {
+            boolean pairRemove = false;
+            for (int i = 0; i < arr.length && !pairRemove; i++) {
+                for (int j = i + 1; j < arr.length; j++) {
+                    if (((arr[i] + arr[j]) % 3 == rem)) {
+                        arr[i] = -1;
+                        arr[j] = -1;
+                        pairRemove = true;
+                        break;
+                    }
                 }
             }
         }
@@ -91,4 +107,26 @@ public class Lab_7 {
         sb.reverse();
         return sb.toString();
     }
+
+    public static String decodePattern(String str) {
+        String newStr = "";
+        int count = 0;
+        char[] strArr = str.toCharArray();
+        if (!Character.isDigit(strArr[strArr.length - 1])) {
+            for (int i = 0; i < strArr.length; i++) {
+                if (Character.isDigit(strArr[i])) {
+                    count = Integer.parseInt(String.valueOf(strArr[i]));
+                    for (int j = 1; j < count; j++) {
+                        newStr += strArr[i + 1];
+                    }
+                } else {
+                    newStr += strArr[i];
+                }
+            }
+        } else {
+            System.out.println("Enter valid string...");
+        }
+        return newStr;
+    }
+
 }
