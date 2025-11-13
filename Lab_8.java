@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Lab_8 {
     public static void main(String[] args) {
@@ -17,8 +18,8 @@ public class Lab_8 {
         // } else {
         // System.out.println("Given string not is anagram");
         // }
-        int[] arr = { 1, 1, 1, 2, 2, 2 };
-        System.out.println(binaryToDecimal("101.110"));
+        int[] arr = { 1, 1, 1, 2, 2 };
+        // System.out.println(binaryToDecimal("101.110"));
         // System.out.println(secondLargetsElementWithoutSort(arr));
         // if (isNonDecreasingArray(arr)) {
         // System.out.println("Given array is non-decreasing array");
@@ -28,16 +29,13 @@ public class Lab_8 {
 
         // System.out.println(findPairsWhoseSumIsK(arr, 6));
 
-        // if (checkConditionOnArray(arr) == 1) {
-        // System.out.println("Given array is full-fil all condotion");
-        // } else {
-        // System.out.println("Given array is not full-fil all condotion");
-        // }
-
+        checkConditionOnArray(arr);
         int[] a = { 1, 12, 15, 26, 38 };
         int[] b = { 2, 13, 17, 30, 45 };
         // System.out.println(findMedian(a, b));
         // System.out.println(myAtoi(" -042"));
+
+        // System.out.println(nThNumber(15));
     }
 
     public static String earliestRepeatedChar(String str) {
@@ -98,15 +96,15 @@ public class Lab_8 {
     public static double binaryToDecimal(String binaryNum) {
         String[] parts = binaryNum.split("\\.");
         String integerPart = parts[0];
-        
+
         String fractionPart = parts[1];
-        
-        double intSum = 0, fracSum = 0, intCount=0, fracCount=-1;
-        for(int i=integerPart.length()-1; i>=0; i--){
+
+        double intSum = 0, fracSum = 0, intCount = 0, fracCount = -1;
+        for (int i = integerPart.length() - 1; i >= 0; i--) {
             intSum = intSum + Character.getNumericValue(integerPart.charAt(i)) * (Math.pow(2, intCount));
             intCount++;
         }
-        for(int i=0; i<fractionPart.length(); i++){
+        for (int i = 0; i < fractionPart.length(); i++) {
             fracSum += Character.getNumericValue(fractionPart.charAt(i)) * (Math.pow(2, fracCount));
             fracCount--;
         }
@@ -153,10 +151,31 @@ public class Lab_8 {
         return count;
     }
 
-    public static int checkConditionOnArray(int[] arr) {
+    public static void checkConditionOnArray(int[] arr) {
         Arrays.sort(arr);
+        // System.out.print("\nSorted array is: ");
+        for (int n : arr)
+            System.out.print(n + " ");
+        System.out.println();
 
-        return 1;
+        int count = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == arr[i - 1]) {
+                count++;
+            } else {
+                if (count < 3) {
+                    System.out.println("0");
+                    return;
+                }
+                count = 1;
+            }
+        }
+
+        if (count < 3) {
+            System.out.println("0");
+        } else {
+            System.out.println("1");
+        }
     }
 
     public static int findMedian(int[] a, int[] b) {
@@ -189,7 +208,18 @@ public class Lab_8 {
         return (int) (Math.pow(disk, 2)) - 1;
     }
 
-    public static int childHopProblem(int n) {
-        return n / 3 + 1;
+    public static int nThNumber(int n) {
+        int len = 1, count = 9, start = 1;
+        while (n > len * count) {
+            n -= len * count;
+            len++;
+            count *= 10;
+            start *= 10;
+        }
+        start = start + (n - 1) / len;
+        String num = String.valueOf(start);
+        int digitIndex = (n - 1) % len;
+        return Integer.parseInt(String.valueOf(num.charAt(digitIndex)));
     }
+
 }
